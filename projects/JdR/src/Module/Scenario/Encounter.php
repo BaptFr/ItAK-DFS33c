@@ -34,11 +34,10 @@ class Encounter
 
         $cumulatedProbabilities = 0;
         foreach ($this->resultLadder as $possibleResult) {
-            if ($score > $possibleResult->probabiliy + $cumulatedProbabilities) {
-                $cumulatedProbabilities += $possibleResult->probabiliy;
+            if ($score > $possibleResult->probability + $cumulatedProbabilities) {
+                $cumulatedProbabilities += $possibleResult->probability;
                 continue;
             }
-
             return $possibleResult->outcome;
         }
 

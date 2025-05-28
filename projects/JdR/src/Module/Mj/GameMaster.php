@@ -80,7 +80,6 @@ class GameMaster
                 );
 
                 if ($this->applyOutcome(
-                        //new \stdClass,
                         $party,
                         $outcome,
                         $score

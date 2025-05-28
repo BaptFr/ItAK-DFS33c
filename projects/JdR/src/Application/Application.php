@@ -10,7 +10,6 @@ use Module\Scenario\Outcome;
 use Module\Scenario\Result;
 use Module\Scenario\Scenario;
 use Module\Scenario\ScenarioFactory;
-$scenarios = ScenarioFactory::createFromData(__DIR__ . '/../data/scenarios.json');
 
 class Application
 {
@@ -89,6 +88,10 @@ class Application
 
     public function run(array $argv)
     {
+
+        $facto = new ScenarioFactory;
+        $scenarios = $facto->createFromData(PROJECT_DIR . '/data/scenarios.json');
+
         $nbRolls = $argv[1] ?? self::DEFAULT_NB_RUNS;
 
         try {

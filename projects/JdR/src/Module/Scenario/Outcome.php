@@ -10,7 +10,7 @@ enum Outcome : string
     case CRITICAL = 'critique';
 
     //Adadpté au JSON
-    public static function fromJsonKey(string $key) : self
+    public static function fromJsonKey(string $key) : self //
     {
         return match(strtolower($key)) {
             'fumble' => self::FUMBLE,
