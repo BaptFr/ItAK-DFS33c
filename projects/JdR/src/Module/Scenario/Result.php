@@ -8,7 +8,7 @@ namespace Module\Scenario;
 class Result
 {
     public function __construct(
-        public readonly int $probabiliy,
+        public readonly int $probability,
         public readonly Outcome $outcome
     ) {
     }

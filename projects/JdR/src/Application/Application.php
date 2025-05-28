@@ -9,6 +9,8 @@ use Module\Scenario\Encounter;
 use Module\Scenario\Outcome;
 use Module\Scenario\Result;
 use Module\Scenario\Scenario;
+use Module\Scenario\ScenarioFactory;
+$scenarios = ScenarioFactory::createFromData(__DIR__ . '/../data/scenarios.json');
 
 class Application
 {
