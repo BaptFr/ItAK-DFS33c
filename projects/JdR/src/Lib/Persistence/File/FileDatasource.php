@@ -5,20 +5,26 @@ namespace Lib\Persistence\File;
 use Lib\File\File;
 use Lib\Persistence\Datasource;
 
-/**
- * @see array_find
- */
 class FileDatasource implements Datasource
 {
-    private /* ... */ $driver;
-
     public function __construct(
+        //File - reader
         private File $sourceFile,
-        // ....... some file drivers
+        private array $drivers
     ) {}
 
     public function loadAll(): \Iterator
     {
-        yield from $this->driver /* ... */;
+        //boucle quel driver pour fichier
+        foreach ($this->drivers as $driver) {
+            if ($driver->accepts($this->sourceFile)) {
+                $data = $driver->extractData($this->sourceFile);
+                foreach ($data as $line) {
+                    yield $line;
+                }
+                return;
+            }
+        }
+        throw new \RuntimeException("No driver for this file extension");
     }
 }

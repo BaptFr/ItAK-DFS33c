@@ -2,12 +2,14 @@
 
 namespace Application;
 
-use Infrastructure\Adapter\JsonFileDatasourceAdapter;
 use Lib\File\File;
 use Lib\ValueObject\PositiveInt;
+use Lib\Persistence\File\FileDatasource;
+use Lib\Persistence\File\Driver\JsonFileDriver;
 use Module\Character\Model as Character;
 use Module\Mj\Model as Mj;
 use Module\Scenario\Factory\ScenarioFactory;
+
 
 class Application
 {
@@ -52,10 +54,15 @@ class Application
     {
         try {
             $scenarioFactory = new ScenarioFactory(
-                new JsonFileDatasourceAdapter(                      // parti pris : l'adapter fait la conversion json
-                    new File($this->dataDir . '/scenarios.json')
+                //Passer un array de drivers
+                new FileDatasource(
+                    new File($this->dataDir . '/scenarios.json'),
+                    [new JsonFileDriver()]
                 )
             );
+
+
+
 
             for ($i = 0; $i < $nbRuns; $i++) {
                 $party = clone $this->party;  // create a new Party on each run

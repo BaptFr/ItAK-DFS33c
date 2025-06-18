@@ -119,4 +119,9 @@ class File
     {
         $this->close();
     }
+
+    public function __toString(): string
+    {
+        return $this->basename;
+    }
 }
